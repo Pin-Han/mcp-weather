@@ -9,6 +9,11 @@ This project consists of two main components:
 - A server that provides weather tools via the Model Context Protocol (MCP)
 - A client that connects to the server and uses Anthropic Claude to process user queries
 
+## Demo
+
+![Weather Application Demo](image.png)
+_Screenshot of the MCP Weather application in action_
+
 ## Features
 
 - Get weather alerts for any US state
@@ -29,43 +34,41 @@ This project consists of two main components:
    cd mcp-weather
    ```
 
-2. Install dependencies for both client and server
+2. Add your Anthropic API key to the environment
 
    ```
-   # Install client dependencies
+   # Create a .env file in the project root
+   echo "ANTHROPIC_API_KEY=your_anthropic_api_key_here" > .env
+   ```
+
+3. Build the client
+
+   ```
    cd client
    npm install
+   npm run build
+   ```
 
-   # Install server dependencies
+4. Build the server
+   ```
    cd ../server
    npm install
-   ```
-
-3. Create a `.env` file in the project root with your Anthropic API key
-   ```
-   ANTHROPIC_API_KEY=your_anthropic_api_key_here
+   npm run build
    ```
 
 ## Usage
 
-1. Start the server
+Run the application using the built files:
 
-   ```
-   cd server
-   npm start
-   ```
+```
+node client/build/index.js server/build/index.js
+```
 
-2. In a separate terminal, run the client and provide the path to the server
+Enter your weather queries in natural language, for example:
 
-   ```
-   cd client
-   npm start ../server/build/index.js
-   ```
-
-3. Enter your weather queries in natural language, for example:
-   - "What's the weather forecast for New York City?"
-   - "Are there any weather alerts in California?"
-   - "What will the temperature be in Chicago tomorrow?"
+- "What's the weather forecast for New York City?"
+- "Are there any weather alerts in California?"
+- "What will the temperature be in Chicago tomorrow?"
 
 ## Available Weather Tools
 
